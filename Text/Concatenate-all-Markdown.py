@@ -26,7 +26,7 @@ def concatenate_markdown_files(directory, ignore_tags=False, include_filenames=T
                         filename = os.path.relpath(md_file, directory).replace(os.sep, '\\\\')
                     else:
                         filename = os.path.basename(md_file)
-                    outfile.write(f'#Filename = {filename}\n\n')
+                    outfile.write(f'# Filename = {filename}\n\n')
                 with open(md_file, 'r', encoding='utf-8') as infile:
                     inside_tag_block = False
                     for line in infile:
