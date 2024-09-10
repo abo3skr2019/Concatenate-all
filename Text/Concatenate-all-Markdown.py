@@ -25,11 +25,12 @@ def concatenate_markdown_files(directory, ignore_tags=False, include_filenames=T
         for md_file in markdown_files:
             with open(md_file, 'r', encoding='utf-8') as infile:
                 file_content = infile.read()
-                
                 if ignore_tags:
                     # Remove the entire block of lines between `---` markers
-                    file_content = re.sub(r'---\n.*?\n---\n', '', file_content, flags=re.DOTALL)
-                
+                    file_content = re.sub(r'---\n.*?\n---\n', '', file_content, flags=re.DOTALL)                
+                if not file_content.strip():
+                    # Skip empty files
+                    continue
                 file_length = len(file_content)
                 
                 if char_limit and current_char_count + file_length > char_limit:
